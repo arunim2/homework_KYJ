@@ -90,44 +90,41 @@
 
             if (name == '') {
                 alert('이름을 입력해주세요');
+                $('#order_name').focus();
                 return;
             } else if (number == '') {
                 alert('수량을 입력해주세요');
+                $('#order_number').focus();
                 return;
             } else if (address == '') {
                 alert('주소를 입력해주세요');
+                $('#order_address').focus();
                 return;
             } else if (phone == '') {
                 alert('전화번호를 입력해주세요');
+                $('#order_phone').focus();
                 return;
-            } else if (!isCellPhone(phone)) {
-                alert('휴대폰 입력 형식이 틀립니다(000-0000-0000');
-                return;
+            // } else if (!isCellPhone(phone)) {
+            //     alert('휴대폰 입력 형식이 틀립니다(000-0000-0000');
+            //     $('#order_phone').focus();
+            //     return;
             } else {
-
-                let temp_html = `<tr>\
-                                <td>${name}</td>\
-                                <td>${number}</td>\
-                                <td>${address}</td>\
-                                <td>${phone}</td>\
-                                </tr>`
-
-             
-            
-            }
-
-            $('#order_writing').append(temp_html);
-
-
-
+                let temp_html = `<tr>
+                                    <td>${name}</td>
+                                    <td>${number}</td>
+                                    <td>${address}</td>
+                                    <td>${phone}</td>
+                                </tr>`;
+                $('#order_writing').append(temp_html);
+            }            
         }
 
-        $(document).ready(function () {
-            $('#orders-box').empty();
+        $(document).ready(function() {
+            $('#orders-box').html('');
             set_exchange();
-
         });
 
+        //환율 정보 표시
         function set_exchange() {
             $.ajax({
                 type: "GET",
@@ -140,9 +137,6 @@
 
             })
         }
-
-     
-
 
     </script>
 
@@ -200,19 +194,23 @@
         <div class="btn-order">
             <button onclick="order_btn()" type="submit" class="btn btn-primary">주문하기</button>
         </div>
-        <div class="orders">
-            <table class="order_table">
+        <div class="orders" id="orrder">
+            <table class="order_table" border="1" bordercolor="gray" width=auto height=auto align="center">
                 <thead>
-                    <tr>
-                        <th scope="col">이름</th>
-                        <th scope="col">수량</th>
-                        <th scope="col">주소</th>
-                        <th scope="col">전화번호</th>
+                    <tr align = "center">
+                        <td>이름</td>
+                        <td>수량</td>
+                        <td>주소</td>
+                        <td>전화번호</td>
                     </tr>
                 </thead>
-
                 <tbody id="order_writing">
-                    
+                    <tr align = "center">
+                        <td>102. 망원역 1번출구 앞</td>
+                        <td>22</td>
+                        <td>0</td>
+                        <td>000-0000-0001</td>
+                    </tr>                    
                 </tbody>
             </table>
         </div>
@@ -220,3 +218,37 @@
 </body>
 
 </html>
+
+<!-- 
+<div class="question-box">
+    <h2>2. 서울시 OpenAPI(실시간 따릉기 현황)를 이용하기</h2>
+    <p>모든 위치의 따릉이 현황을 보여주세요</p>
+    <p>업데이트 버튼을 누를 때마다 지웠다 새로 씌여져야 합니다.</p>
+    <button onclick="q1()">업데이트</button>
+    <table>
+        <thead>
+            <tr>
+                <td>거치대 위치</td>
+                <td>거치대 수</td>
+                <td>현재 거치된 따릉이 수</td>
+            </tr>
+        </thead>
+        <tbody id="names-q1">
+            <tr>
+                <td>102. 망원역 1번출구 앞</td>
+                <td>22</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>103. 망원역 2번출구 앞</td>
+                <td>16</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>104. 합정역 1번출구 앞</td>
+                <td>16</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
